@@ -1,11 +1,17 @@
 package com.zan.myLearnFabricMod.item;
 
 import com.zan.myLearnFabricMod.MyLearnFabricMod;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemGroups;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.util.function.Function;
@@ -37,6 +43,27 @@ public class TutorialItems {
         return item;
     }
 
+    /**
+     * 新物品组的Key（创建新物品组）
+     */
+    public static final RegistryKey<ItemGroup> CUSTOM_ITEM_GROUP_KEY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of(MyLearnFabricMod.MOD_ID, "item_group"));
+
+    /**
+     * 创建物品组
+     */
+    public static final ItemGroup CUSTOM_ITEM_GROUP = FabricItemGroup.builder()
+            // 物品组图标选择
+            .icon(() -> new ItemStack(TutorialItems.SUSPICIOUS_SUBSTANCE))
+            .displayName(Text.translatable("itemGroup.fabric_docs_reference"))
+            .build();
+
     public static void initialize() {
+        // 注册新物品组
+        Registry.register(Registries.ITEM_GROUP, CUSTOM_ITEM_GROUP_KEY, CUSTOM_ITEM_GROUP);
+        // 将新物品添加到物品栏中
+        ItemGroupEvents.modifyEntriesEvent(CUSTOM_ITEM_GROUP_KEY).register(itemGroup -> {
+            itemGroup.add(TutorialItems.SUSPICIOUS_SUBSTANCE);
+            // 还可以继续添加
+        });
     }
 }
