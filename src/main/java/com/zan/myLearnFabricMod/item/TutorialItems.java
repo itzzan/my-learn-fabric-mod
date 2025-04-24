@@ -3,6 +3,8 @@ package com.zan.myLearnFabricMod.item;
 import com.zan.myLearnFabricMod.MyLearnFabricMod;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
+import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
@@ -64,6 +66,12 @@ public class TutorialItems {
         ItemGroupEvents.modifyEntriesEvent(CUSTOM_ITEM_GROUP_KEY).register(itemGroup -> {
             itemGroup.add(TutorialItems.SUSPICIOUS_SUBSTANCE);
             // 还可以继续添加
+        });
+        // 让新物品可以堆肥（堆肥桶）
+        CompostingChanceRegistry.INSTANCE.add(TutorialItems.SUSPICIOUS_SUBSTANCE, 0.3f);
+        // 让物品可作燃料（跟煤炭一样）
+        FuelRegistryEvents.BUILD.register((builder, context) -> {
+            builder.add(TutorialItems.SUSPICIOUS_SUBSTANCE, 30 * 20);
         });
     }
 }
