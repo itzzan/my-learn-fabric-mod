@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "my-learn-fabric-mod",
+  "version": "${version}",
+  "name": "my-learn-fabric-mod",
+  "description": "Zan的Fabric模组",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/my-learn-fabric-mod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "com.zan.myLearnFabricMod.client.MyLearnFabricModDataGenerator"
+    ],
+    "client": [
+      "com.zan.myLearnFabricMod.client.MyLearnFabricModClient"
+    ],
+    "main": [
+      "com.zan.myLearnFabricMod.MyLearnFabricMod"
+    ]
+  },
+  "mixins": [
+    "my-learn-fabric-mod.mixins.json",
+    {
+      "config": "my-learn-fabric-mod.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
