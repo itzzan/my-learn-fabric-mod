@@ -17,17 +17,26 @@ import java.util.function.Function;
  * @Description : 创建物品——实体类
  */
 public class TutorialItems {
+
+    /**
+     * 新物品进行注册
+     * 注册成功后，未加入到物品表里，可以通过命令：/give @s my-learn-fabric-mod:suspicious_substance 获取
+     */
+    public static final Item SUSPICIOUS_SUBSTANCE = register("suspicious_substance", Item::new, new Item.Settings());
+
     public static Item register(String name, Function<Item.Settings, Item> itemFactory, Item.Settings settings) {
-        // Create the item key.
+        // 创建唯一注册Key
         RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MyLearnFabricMod.MOD_ID, name));
 
-        // Create the item instance.
+        // 创建项目实例
         Item item = itemFactory.apply(settings.registryKey(itemKey));
 
-        // Register the item.
+        // 注册该项目实例
         Registry.register(Registries.ITEM, itemKey, item);
 
         return item;
     }
 
+    public static void initialize() {
+    }
 }

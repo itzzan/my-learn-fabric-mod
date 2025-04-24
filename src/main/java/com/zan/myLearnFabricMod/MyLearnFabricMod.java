@@ -1,7 +1,11 @@
 package com.zan.myLearnFabricMod;
 
+import com.zan.myLearnFabricMod.item.TutorialItems;
 import net.fabricmc.api.ModInitializer;
 
+/**
+ * 初始化类
+ */
 public class MyLearnFabricMod implements ModInitializer {
 
     /**
@@ -11,5 +15,7 @@ public class MyLearnFabricMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        // 初始化新物品类
+        TutorialItems.initialize();
     }
 }
