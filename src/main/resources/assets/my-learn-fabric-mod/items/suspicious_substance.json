@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "my-learn-fabric-mod:item/suspicious_substance"
+  }
+}

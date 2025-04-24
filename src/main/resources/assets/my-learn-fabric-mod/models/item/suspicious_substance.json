@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "my-learn-fabric-mod:item/suspicious_substance"
+  }
+}
